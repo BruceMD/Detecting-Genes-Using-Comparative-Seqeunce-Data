@@ -2,68 +2,152 @@ import java.util.ArrayList;
 
 public class SignificantOrf {
 
-	public static ArrayList<Integer> Difference() throws Exception{
+	public static ArrayList<ArrayList<String>> ForwardOrfs() throws Exception{
 		
-		ArrayList<Integer> arrayOfDifferences = new ArrayList<Integer>();
-		ArrayList<ArrayList<ArrayList<Integer>>> array = new ArrayList<ArrayList<ArrayList<Integer>>>();
-		array = StopCodons.AllStopCodons();
+		ArrayList<ArrayList<ArrayList<Integer>>> arrayOfStopCodons = new ArrayList<ArrayList<ArrayList<Integer>>>();
+		arrayOfStopCodons = StopCodons.AllStopCodons();		// array of all the stop codons per sequence per frame
 		
-		for (int n = 0; n < array.size(); n++) {
- 			for (int o = 1; o < array.get(n).size(); o++) {
- 				for (int p = 0; p < array.get(n).get(o).size() - 1; p ++) {
- 					System.out.println(n + " " + o + " " + p + " " + array.get(n).get(o).get(p));
- 					System.out.println(array.get(n).get(o).get(p) - array.get(n).get(o).get(p+1));
- 					int diff = array.get(n).get(o).get(p) - array.get(n).get(o).get(p+1);
- 					arrayOfDifferences.add(diff);
-
- 				} 				
- 			}
-		}
+		ArrayList<String> sequences = new ArrayList<>();
+		sequences = ReadFile.Sequence();					// array of all the sequences
 		
-/*		for (int n = 0; n < array.size(); n++) {
- 			for (int o = 0; o < array.get(n).size(); o++) {
- 				for (int p = 0; p < array.get(n).get(o).size() - 1; p ++) {
- 					System.out.println(arrayOfDifferences.get(n).get(o).get(p)); }}}
-*/		
-		System.out.println(arrayOfDifferences);
-		int countSmall = 0;
-		int countMedium = 0; 
-		int countLarge = 0;
-		int countMassive = 0;
+		ArrayList<ArrayList<String>> arrayOfForwardOrfs = new ArrayList<ArrayList<String>>();
 		
-		for (int m = 0; m < arrayOfDifferences.size(); m++) {
-			if ((arrayOfDifferences.get(m) * arrayOfDifferences.get(m))  < 900){
-				countSmall = countSmall + 1;
+		ArrayList<String> repeatFinder = new ArrayList<String>();
+		
+		for (int i = 0; i < 3; i++) {					//cycle through the first 3 forward frames
+			for (int j = 0; j < arrayOfStopCodons.get(i).size(); j++) {			//cycle through the sequences
+				for (int k = 0; k < arrayOfStopCodons.get(i).get(j).size() - 1; k++){	// cycle through nucleotides of each sequence
+					int x = arrayOfStopCodons.get(i).get(j).get(k);
+					int y = arrayOfStopCodons.get(i).get(j).get(k+1);
+					
+					if (!repeatFinder.contains(x + " " + y)) {
+						
+						if( x - y > 33 || x - y < -33 ) {	// check to see if ORF will be long enough
+							
+							int count = 0;
+							ArrayList<String> tempOrf = new ArrayList<String>();
+							
+							for (int l = 0; l < 3; l++) {					//cycle through the first 3 forward frames
+								for (int m = 0; m < arrayOfStopCodons.get(l).size(); m++) {			//cycle through the sequences
+									for (int n = 0; n < arrayOfStopCodons.get(l).get(m).size() - 1; n++){	// cycle through nucleotides of each sequence
+										if (x == arrayOfStopCodons.get(l).get(m).get(n)) {
+											if (y == arrayOfStopCodons.get(l).get(m).get(n+1)) {
+												count = count +1;
+												//need to setup a FASTA format of everything
+												tempOrf.add(">S" + m + "I" + x + ":" + y); 		// S for sequence, I for index, want to remember where each ORF is from
+												String constructTempOrf = "";
+												
+												for (int o = x+3; o < y; o++) {					// construct the ORF from indices x +3 (skip that stop codon) to y
+													constructTempOrf = constructTempOrf + sequences.get(m).charAt(o);
+												}
+												
+	//											System.out.println("Sequence " + m + " " + x + " " + y + " length: "+ constructTempOrf.length() + " " + constructTempOrf);
+												tempOrf.add(constructTempOrf);					// add constructed ORF to tempOrf
+											}	
+										}	
+									}
+								}
+							}	
+							
+							
+							if (count > 3) {													// if the count is sufficient (above 3) append it to arrayOfForwardOrfs
+								arrayOfForwardOrfs.add(tempOrf);
+							}
+							
+							repeatFinder.add(x + " " + y);		// add x and y to repeat finder to be avoided in the future
+							
+						}
+					}	
+				}
 			}
-			else if ((arrayOfDifferences.get(m) * arrayOfDifferences.get(m))  < 10000){
-				countMedium = countMedium + 1;
-			}
-			else if ((arrayOfDifferences.get(m) * arrayOfDifferences.get(m))  < 4000000){
-				countLarge = countLarge + 1;
-			}
-			else {
-				countMassive = countMassive + 1;
-				System.out.println(arrayOfDifferences.get(m));
-			}
-		}
-		
-		System.out.println("Number of sequences less than 30 bp long:  "+ countSmall);
-		System.out.println("Number of sequences less than 100 bp long: "+ countMedium);		
-		System.out.println("Number of sequences less than 200 bp long:  "+ countLarge);		
-		System.out.println("Number of sequences more than 200 bp long:  "+ countMassive);		
-		
-		return arrayOfDifferences;
+		}	
+				
+		return arrayOfForwardOrfs;
 	}
-
-
-
-
-
-
-
-
-
-
-
+	
+	public static ArrayList<ArrayList<String>> ReverseOrfs() throws Exception{
+		
+		ArrayList<ArrayList<ArrayList<Integer>>> arrayOfStopCodons = new ArrayList<ArrayList<ArrayList<Integer>>>();
+		arrayOfStopCodons = StopCodons.AllStopCodons();		// array of all the stop codons per sequence per frame
+		
+		ArrayList<String> sequences = new ArrayList<>();
+		sequences = ReadFile.Sequence();					// array of all the sequences
+		
+		ArrayList<ArrayList<String>> arrayOfReverseOrfs = new ArrayList<ArrayList<String>>();
+		
+		ArrayList<String> repeatFinder = new ArrayList<String>();
+		
+		for (int i = 3; i < 6; i++) {					//cycle through the 3 REVERSE frames
+			for (int j = 0; j < arrayOfStopCodons.get(i).size(); j++) {			//cycle through the sequences
+				for (int k = 0; k < arrayOfStopCodons.get(i).get(j).size() - 1; k++){	// cycle through nucleotides of each sequence
+					int x = arrayOfStopCodons.get(i).get(j).get(k);
+					int y = arrayOfStopCodons.get(i).get(j).get(k+1);
+					
+					
+					if (!repeatFinder.contains(x + " " + y)) {
+						
+						if( x - y > 33 || x - y < -33 ) {	// check to see if ORF will be long enough
+							
+							int count = 0;
+							ArrayList<String> tempOrf = new ArrayList<String>();
+							
+							for (int l = 3; l < 6; l++) {					//cycle through the first 3 forward frames
+								for (int m = 0; m < arrayOfStopCodons.get(l).size(); m++) {			//cycle through the sequences
+									for (int n = 0; n < arrayOfStopCodons.get(l).get(m).size() - 1; n++){	// cycle through nucleotides of each sequence
+										if (x == arrayOfStopCodons.get(l).get(m).get(n)) {
+											if (y == arrayOfStopCodons.get(l).get(m).get(n+1)) {
+												count = count +1;
+												//need to setup a FASTA format of everything
+												tempOrf.add(">S" + m + "I" + x + ":" + y); 		// S for sequence, I for index, want to remember where each ORF is from
+												String constructTempOrf = "";
+												
+												for (int o = x-3; o > y; o--) {					// construct the ORF from indices x to y
+													constructTempOrf = constructTempOrf + sequences.get(m).charAt(o);
+												}
+												
+	//											System.out.println("Sequence " + m + " " + x + " " + y + " length: "+ constructTempOrf.length() + " " + constructTempOrf);
+												tempOrf.add(constructTempOrf);					// add constructed ORF to tempOrf
+											}	
+										}	
+									}
+								}
+							}	
+							
+							
+							if (count > 3) {								// if the count is sufficient (above 3) append it to arrayOfForwardOrfs
+								arrayOfReverseOrfs.add(tempOrf);
+							}	
+							
+							repeatFinder.add(x + " " + y);		// add x and y to repeat finder to be avoided in the future
+							
+						}
+					}
+				}
+			}
+		}
+				
+		return arrayOfReverseOrfs;
+	}
+	
+	
+	public static ArrayList<ArrayList<ArrayList<String>>> AllOrfs() throws Exception{
+		
+		ArrayList<ArrayList<ArrayList<String>>> allOrfs = new ArrayList<ArrayList<ArrayList<String>>>();
+		
+		
+		
+		allOrfs.add(SignificantOrf.ForwardOrfs());
+		allOrfs.add(SignificantOrf.ReverseOrfs());
+		
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < allOrfs.get(i).size(); j ++) {
+				for (int k = 0; k < allOrfs.get(i).get(j).size(); k++) {
+					System.out.println(allOrfs.get(i).get(j).get(k));
+				}
+			}
+		}
+		
+		return allOrfs;
+	}
 
 }
