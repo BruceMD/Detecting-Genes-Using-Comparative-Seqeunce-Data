@@ -4,23 +4,28 @@ public class StopCodons {
 	
 	public static ArrayList<ArrayList<ArrayList<Integer>>> AllStopCodons() throws Exception{
 	
-		ArrayList<ArrayList<ArrayList<Integer>>> array = new ArrayList<ArrayList<ArrayList<Integer>>>();
+		ArrayList<ArrayList<ArrayList<Integer>>> arrayOfStopCodons = new ArrayList<ArrayList<ArrayList<Integer>>>();
 		
-		array.add(StopCodons.FrameOne());
-		array.add(StopCodons.FrameTwo());
-		array.add(StopCodons.FrameThree());
-		array.add(StopCodons.FrameNOne());
-		array.add(StopCodons.FrameNTwo());
-		array.add(StopCodons.FrameNThree());
+		arrayOfStopCodons.add(StopCodons.FrameOne());
+		arrayOfStopCodons.add(StopCodons.FrameTwo());
+		arrayOfStopCodons.add(StopCodons.FrameThree());
+		arrayOfStopCodons.add(StopCodons.FrameNOne());
+		arrayOfStopCodons.add(StopCodons.FrameNTwo());
+		arrayOfStopCodons.add(StopCodons.FrameNThree());
  		
-/* 		for (int n = 0; n < array.size(); n++) {
- 			for (int o = 0; o < array.get(n).size(); o++) {
- 					System.out.println("Frame " + (n+1) + ": " + "Sequence " + (o+1) + " -> " + array.get(n).get(o));
- 		
+/* 		Create a list of all stop codons listed per frame per sequence
+ * 
+ * 
+ * 		for (int n = 0; n < arrayOfStopCodons.size(); n++) {
+ 			System.out.println("Frame " + (n+1));
+ 			for (int o = 1; o < arrayOfStopCodons.get(n).size(); o++) {
+ 					System.out.println("Sequence " + (o) + " -> " + arrayOfStopCodons.get(n).get(o));
  			}
+ 			System.out.println("");
+
  		}
 */ 		
- 		return array;
+ 		return arrayOfStopCodons;
 
 	}
 	
@@ -37,13 +42,18 @@ public class StopCodons {
 		for (int i = 0; i < listOfSequences.size(); i++) {	// cycle through the items in the Arraylist
 			
 			ArrayList<Integer> locationOfStopCodons = new ArrayList<Integer>();
+			locationOfStopCodons.add(1);
 			
 			for (int j = 0; j < listOfSequences.get(i).length(); j++) { 	// cycle through the characters in each sequence
 				
 				if (listOfSequences.get(i).charAt(j) == 'A' || 
 					listOfSequences.get(i).charAt(j) == 'T' || 
 					listOfSequences.get(i).charAt(j) == 'C' || 
-					listOfSequences.get(i).charAt(j) == 'G') 
+					listOfSequences.get(i).charAt(j) == 'G' ||
+					listOfSequences.get(i).charAt(j) == 'a' || 
+					listOfSequences.get(i).charAt(j) == 't' || 
+					listOfSequences.get(i).charAt(j) == 'c' || 
+					listOfSequences.get(i).charAt(j) == 'g') 
 				{													// provided the character is only an nucleotide
 //					System.out.println(tempCodon.length());
 					
@@ -93,6 +103,7 @@ public class StopCodons {
 			for (int i = 0; i < listOfSequences.size(); i++) {	// cycle through the items in the Arraylist
 				
 				ArrayList<Integer> locationOfStopCodons = new ArrayList<Integer>();
+				locationOfStopCodons.add(2);
 				
 				for (int j = 0; j < listOfSequences.get(i).length(); j++) { 	// cycle through the characters in each sequence
 					
@@ -150,6 +161,7 @@ public class StopCodons {
 		for (int i = 0; i < listOfSequences.size(); i++) {	// cycle through the items in the Arraylist
 			
 			ArrayList<Integer> locationOfStopCodons = new ArrayList<Integer>();
+			locationOfStopCodons.add(3);
 			
 			for (int j = 0; j < listOfSequences.get(i).length(); j++) { 	// cycle through the characters in each sequence
 				
@@ -193,7 +205,7 @@ public class StopCodons {
 		
 	}
 	
-	public static ArrayList<ArrayList<Integer>> FrameNOne() throws Exception {
+	public static ArrayList<ArrayList<Integer>> FrameNOne() throws Exception { 	// perfect
 		
 		String tempCodon = new String();		// frame -1
 	
@@ -240,7 +252,7 @@ public class StopCodons {
 	
 				
 			}		// cycle through the characters in each sequence
-			
+			locationOfStopCodons.add(1);
 			locationOfAllStopCodonsNOne.add(locationOfStopCodons);
 	
 		}		// cycle through the items in the Arraylist
@@ -249,7 +261,7 @@ public class StopCodons {
 		
 	}
 	
-	public static ArrayList<ArrayList<Integer>> FrameNTwo() throws Exception {
+	public static ArrayList<ArrayList<Integer>> FrameNTwo() throws Exception {	// perfect
 		
 		String tempCodon = new String();		// frame -2
 		tempCodon = "NN";
@@ -297,7 +309,7 @@ public class StopCodons {
 	
 				
 			}		// cycle through the characters in each sequence
-			
+			locationOfStopCodons.add(2);
 			locationOfAllStopCodonsNTwo.add(locationOfStopCodons);
 	
 		}		// cycle through the items in the Arraylist
@@ -306,7 +318,7 @@ public class StopCodons {
 		
 	}
 	
-	public static ArrayList<ArrayList<Integer>> FrameNThree() throws Exception {
+	public static ArrayList<ArrayList<Integer>> FrameNThree() throws Exception {// perfect
 		
 		String tempCodon = new String();		// frame -3
 		tempCodon = "N";
@@ -354,7 +366,7 @@ public class StopCodons {
 	
 				
 			}		// cycle through the characters in each sequence
-			
+			locationOfStopCodons.add(3);
 			locationOfAllStopCodonsNThree.add(locationOfStopCodons);
 	
 		}		// cycle through the items in the Array list
@@ -362,8 +374,6 @@ public class StopCodons {
 		return locationOfAllStopCodonsNThree;
 		
 	}
-	
-		
 		
 }
 	
