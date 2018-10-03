@@ -5,7 +5,11 @@ public class ReadFile {
 	
 	public static ArrayList<String> Sequence() throws Exception {
 	
-		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example2(A-J-cons-kal153).fas");
+//		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Flu.fasta");
+		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example1(PotySeqs).fas");
+//		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example2(A-J-cons-kal153).fas");
+//		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example3(FMDV).fas");
+		
 		BufferedReader buffReader = new BufferedReader(new FileReader(file));
 	
 		String tempLine = null;
@@ -19,7 +23,7 @@ public class ReadFile {
 					Sequences.add(" ");
 				}
 				else {
-					Sequences.add("\n" + tempString);
+					Sequences.add(tempString);
 					tempString = "";
 				}
 			}
@@ -28,6 +32,7 @@ public class ReadFile {
 				tempString = tempString + tempLine.trim();
 			}	
 		}
+		
 		Sequences.add(tempString);
 		tempString = "";
 		
@@ -38,7 +43,7 @@ public class ReadFile {
  		BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 		
 		for (int i = 1; i < Sequences.size(); i++) {
-			writer.write(Sequences.get(i));
+			writer.write(Sequences.get(i) + "\n");
 		}
 */		
 //		System.out.println(Sequences);
@@ -50,7 +55,4 @@ public class ReadFile {
 		return Sequences;
 		
 	}
-	
-	
-	
 }
