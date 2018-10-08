@@ -34,7 +34,7 @@ public class SignificantOrf {
 											if (y == arrayOfStopCodons.get(l).get(m).get(n+1)) {
 												count = count +1;
 												//need to setup a FASTA format of everything
-												tempOrf.add(">S" + m + "I" + x + ":" + y); 		// S for sequence, I for index, want to remember where each ORF is from
+												tempOrf.add(">S" + m + "I" + x + "_" + y); 		// S for sequence, I for index, want to remember where each ORF is from
 												String constructTempOrf = "";
 												
 												for (int o = x+3; o < y; o++) {					// construct the ORF from indices x +3 (skip that stop codon) to y
@@ -98,7 +98,7 @@ public class SignificantOrf {
 											if (y == arrayOfStopCodons.get(l).get(m).get(n+1)) {
 												count = count +1;
 												//need to setup a FASTA format of everything
-												tempOrf.add(">S" + m + "I" + x + ":" + y); 		// S for sequence, I for index, want to remember where each ORF is from
+												tempOrf.add(">S" + m + "I" + x + "_" + y); 		// S for sequence, I for index, want to remember where each ORF is from
 												String constructTempOrf = "";
 												
 												for (int o = x-3; o > y; o--) {					// construct the ORF from indices x to y
@@ -139,13 +139,18 @@ public class SignificantOrf {
 		allOrfs.add(SignificantOrf.ForwardOrfs());
 		allOrfs.add(SignificantOrf.ReverseOrfs());
 		
+//		int countOrfs = 0;
+		
 		for (int i = 0; i < 2; i++) {
+//			countOrfs = countOrfs + allOrfs.get(i).size();
 			for (int j = 0; j < allOrfs.get(i).size(); j ++) {
 				for (int k = 0; k < allOrfs.get(i).get(j).size(); k++) {
 					System.out.println(allOrfs.get(i).get(j).get(k));
 				}
 			}
 		}
+		
+//		System.out.println("Number of Orfs is : " + countOrfs);
 		
 		return allOrfs;
 	}

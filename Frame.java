@@ -11,6 +11,9 @@ public class Frame {
 
 	public void setListOfSignificantMatchingOrfs(ArrayList<SignificantMatchingOrfs> listOfSignificantMatchingOrfs) {
 		this.listOfSignificantMatchingOrfs = listOfSignificantMatchingOrfs;
+		
+		
+		
 	}
 
 	public ArrayList<Integer> getListOfSignificantOrfLocations() {

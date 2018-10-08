@@ -8,7 +8,8 @@ public class OrfFinder {
 	
 //			StopCodons.AllStopCodons();
 //			TempSizeOrfs.Difference();
-			SignificantOrf.AllOrfs();
+//			SignificantOrf.AllOrfs();
+			FastaOutput.FastaWriter();
 			
 		}
 }
