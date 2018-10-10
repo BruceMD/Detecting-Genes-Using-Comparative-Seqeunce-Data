@@ -6,6 +6,7 @@ public class OrfFinder {
 
 		public static void main(String[] args) throws Exception {
 	
+//			ReadFile.InputFile();
 //			StopCodons.AllStopCodons();
 //			TempSizeOrfs.Difference();
 //			SignificantOrf.AllOrfs();

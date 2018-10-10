@@ -22,7 +22,7 @@ public class SignificantOrf {
 					
 					if (!repeatFinder.contains(x + " " + y)) {
 						
-						if( x - y > 33 || x - y < -33 ) {	// check to see if ORF will be long enough
+						if((x-y)*(x-y) > 33*33 ) {	// check to see if ORF will be long enough, x is smaller than y, should give a negative value
 							
 							int count = 0;
 							ArrayList<String> tempOrf = new ArrayList<String>();
@@ -86,7 +86,7 @@ public class SignificantOrf {
 					
 					if (!repeatFinder.contains(x + " " + y)) {
 						
-						if( x - y > 33 || x - y < -33 ) {	// check to see if ORF will be long enough
+						if((x-y)*(x-y) > 33*33 ) {	// check to see if ORF will be long enough, x is larger than y, should give positive value
 							
 							int count = 0;
 							ArrayList<String> tempOrf = new ArrayList<String>();
@@ -141,7 +141,7 @@ public class SignificantOrf {
 		
 //		int countOrfs = 0;
 		
-		for (int i = 0; i < 2; i++) {
+/*		for (int i = 0; i < 2; i++) {
 //			countOrfs = countOrfs + allOrfs.get(i).size();
 			for (int j = 0; j < allOrfs.get(i).size(); j ++) {
 				for (int k = 0; k < allOrfs.get(i).get(j).size(); k++) {
@@ -149,7 +149,7 @@ public class SignificantOrf {
 				}
 			}
 		}
-		
+*/		
 //		System.out.println("Number of Orfs is : " + countOrfs);
 		
 		return allOrfs;

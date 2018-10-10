@@ -49,11 +49,7 @@ public class StopCodons {
 				if (listOfSequences.get(i).charAt(j) == 'A' || 
 					listOfSequences.get(i).charAt(j) == 'T' || 
 					listOfSequences.get(i).charAt(j) == 'C' || 
-					listOfSequences.get(i).charAt(j) == 'G' ||
-					listOfSequences.get(i).charAt(j) == 'a' || 
-					listOfSequences.get(i).charAt(j) == 't' || 
-					listOfSequences.get(i).charAt(j) == 'c' || 
-					listOfSequences.get(i).charAt(j) == 'g') 
+					listOfSequences.get(i).charAt(j) == 'G'  ) 
 				{													// provided the character is only an nucleotide
 //					System.out.println(tempCodon.length());
 					

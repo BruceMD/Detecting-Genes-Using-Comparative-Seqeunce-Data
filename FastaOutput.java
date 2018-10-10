@@ -10,10 +10,12 @@ public class FastaOutput {
 		OrfsArray = SignificantOrf.AllOrfs();
 		Integer count = 0;
 		
+//		System.out.println(OrfsArray);
+		
 		for (int i = 0; i < OrfsArray.size(); i++) {
 			for (int j = 0; j < OrfsArray.get(i).size(); j++) {
 				
-				File fileName = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\New Folder1\\Orf" + (count +1) + ".fas");
+				File fileName = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\ExamplePoty\\Orf" + (count +1) + ".fas");
 				BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 			
 				for (int k = 0; k < OrfsArray.get(i).get(j).size(); k++) {

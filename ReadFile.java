@@ -1,14 +1,34 @@
 import java.util.*;
 import java.io.*;
 
+
+
+
 public class ReadFile {
+	
+	public static String InputFile() {
+		
+		Scanner input = new Scanner(System.in);
+		String inputFilePath = "";
+		
+		System.out.println("Enter path fo file: ");
+		inputFilePath = input.nextLine();
+		
+		input.close();
+		
+		System.out.println(inputFilePath);
+		return inputFilePath;
+		
+	}	
 	
 	public static ArrayList<String> Sequence() throws Exception {
 	
 //		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Flu.fasta");
-//		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example1(PotySeqs).fas");
+		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example1(PotySeqs).fas");
 //		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example2(A-J-cons-kal153).fas");
-		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example3(FMDV).fas");
+//		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example3(FMDV).fas");
+	
+//		File file = new File(ReadFile.InputFile());
 		
 		BufferedReader buffReader = new BufferedReader(new FileReader(file));
 	
@@ -20,10 +40,10 @@ public class ReadFile {
 //			System.out.println(tempLine);
 			if(tempLine.contains(">")){
 				if (Sequences.size() == 0) {
-					Sequences.add(" ");
+					Sequences.add(" ");			// name of FASTA file would work well
 				}
-				else {
-					Sequences.add(tempString);
+				else {							
+					Sequences.add(tempString.toUpperCase());
 					tempString = "";
 				}
 			}
@@ -33,7 +53,7 @@ public class ReadFile {
 			}	
 		}
 		
-		Sequences.add(tempString);
+		Sequences.add(tempString.toUpperCase());
 		tempString = "";
 		
 		buffReader.close();
