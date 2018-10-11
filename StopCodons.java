@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class StopCodons {
 	
@@ -13,10 +13,10 @@ public class StopCodons {
 		arrayOfStopCodons.add(StopCodons.FrameNTwo());
 		arrayOfStopCodons.add(StopCodons.FrameNThree());
  		
-/* 		Create a list of all stop codons listed per frame per sequence
- * 
- * 
- * 		for (int n = 0; n < arrayOfStopCodons.size(); n++) {
+ 		//Create a list of all stop codons listed per frame per sequence
+ 
+ 
+ 		for (int n = 0; n < arrayOfStopCodons.size(); n++) {
  			System.out.println("Frame " + (n+1));
  			for (int o = 1; o < arrayOfStopCodons.get(n).size(); o++) {
  					System.out.println("Sequence " + (o) + " -> " + arrayOfStopCodons.get(n).get(o));
@@ -24,7 +24,7 @@ public class StopCodons {
  			System.out.println("");
 
  		}
-*/ 		
+ 		
  		return arrayOfStopCodons;
 
 	}
@@ -42,7 +42,6 @@ public class StopCodons {
 		for (int i = 0; i < listOfSequences.size(); i++) {	// cycle through the items in the Arraylist
 			
 			ArrayList<Integer> locationOfStopCodons = new ArrayList<Integer>();
-			locationOfStopCodons.add(1);
 			
 			for (int j = 0; j < listOfSequences.get(i).length(); j++) { 	// cycle through the characters in each sequence
 				
@@ -99,7 +98,6 @@ public class StopCodons {
 			for (int i = 0; i < listOfSequences.size(); i++) {	// cycle through the items in the Arraylist
 				
 				ArrayList<Integer> locationOfStopCodons = new ArrayList<Integer>();
-				locationOfStopCodons.add(2);
 				
 				for (int j = 0; j < listOfSequences.get(i).length(); j++) { 	// cycle through the characters in each sequence
 					
@@ -157,7 +155,6 @@ public class StopCodons {
 		for (int i = 0; i < listOfSequences.size(); i++) {	// cycle through the items in the Arraylist
 			
 			ArrayList<Integer> locationOfStopCodons = new ArrayList<Integer>();
-			locationOfStopCodons.add(3);
 			
 			for (int j = 0; j < listOfSequences.get(i).length(); j++) { 	// cycle through the characters in each sequence
 				
@@ -248,7 +245,6 @@ public class StopCodons {
 	
 				
 			}		// cycle through the characters in each sequence
-			locationOfStopCodons.add(1);
 			locationOfAllStopCodonsNOne.add(locationOfStopCodons);
 	
 		}		// cycle through the items in the Arraylist
@@ -305,7 +301,6 @@ public class StopCodons {
 	
 				
 			}		// cycle through the characters in each sequence
-			locationOfStopCodons.add(2);
 			locationOfAllStopCodonsNTwo.add(locationOfStopCodons);
 	
 		}		// cycle through the items in the Arraylist
@@ -362,7 +357,6 @@ public class StopCodons {
 	
 				
 			}		// cycle through the characters in each sequence
-			locationOfStopCodons.add(3);
 			locationOfAllStopCodonsNThree.add(locationOfStopCodons);
 	
 		}		// cycle through the items in the Array list
