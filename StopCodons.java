@@ -15,7 +15,7 @@ public class StopCodons {
  		
  		//Create a list of all stop codons listed per frame per sequence
  
- 
+/* 
  		for (int n = 0; n < arrayOfStopCodons.size(); n++) {
  			System.out.println("Frame " + (n+1));
  			for (int o = 1; o < arrayOfStopCodons.get(n).size(); o++) {
@@ -24,7 +24,7 @@ public class StopCodons {
  			System.out.println("");
 
  		}
- 		
+*/ 		
  		return arrayOfStopCodons;
 
 	}

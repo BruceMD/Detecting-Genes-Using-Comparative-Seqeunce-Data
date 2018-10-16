@@ -9,7 +9,7 @@ public class OrfFinder {
 //			ReadFile.InputFile();
 //			StopCodons.AllStopCodons();
 //			TempSizeOrfs.Difference();
-//			SignificantOrf.AllOrfs();
+//			SignificantOrf.allAdjustedOrfs();
 			FastaOutput.FastaWriter();
 			
 		}
