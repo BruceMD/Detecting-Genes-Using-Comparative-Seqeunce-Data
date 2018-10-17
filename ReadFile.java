@@ -23,8 +23,8 @@ public class ReadFile {
 	
 	public static ArrayList<String> Sequence() throws Exception {
 	
-//		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example1(PotySeqs).fas");
-		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example2(A-J-cons-kal153).fas");
+		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example1(PotySeqs).fas");
+//		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example2(A-J-cons-kal153).fas");
 //		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example3(FMDV).fas");
 	
 //		File file = new File(ReadFile.InputFile());

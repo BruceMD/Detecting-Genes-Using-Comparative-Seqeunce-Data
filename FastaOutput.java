@@ -14,7 +14,7 @@ public class FastaOutput {
 		
 		for (int j = 0; j < OrfsArray.size(); j++) {
 				
-			File fileName = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\ExampleAJ\\Orf" + (count +1) + ".fas");
+			File fileName = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\ExamplePoty\\Orf" + (count +1) + ".fas");
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 			
 			for (int k = 0; k < OrfsArray.get(j).size(); k++) {

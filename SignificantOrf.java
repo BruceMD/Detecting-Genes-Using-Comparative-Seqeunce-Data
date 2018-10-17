@@ -51,7 +51,7 @@ public class SignificantOrf {
 							
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////					
 							
-							if (count > 9) {													// if the count is sufficient (above 3) append it to arrayOfForwardOrfs
+							if (count > 3) {													// if the count is sufficient (above 3) append it to arrayOfForwardOrfs
 								arrayOfForwardOrfs.add(tempOrf);
 							}
 							
@@ -375,12 +375,12 @@ public class SignificantOrf {
 		}
 		
 		
-		for (int q = 0; q < allOrfs.size(); q ++) {
+/*		for (int q = 0; q < allOrfs.size(); q ++) {
 			for (int r = 0; r < allOrfs.get(q).size(); r++) {
 				System.out.println(allOrfs.get(q).get(r));
 			}
 		}
-		
+*/		
 		return allOrfs;
 	}
 }
