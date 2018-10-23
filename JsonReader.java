@@ -106,26 +106,28 @@ public class JsonReader {
 
 		}
 		
-/*		for (int x = 0; x < allOrfData.size(); x++) {
+		for (int x = 0; x < allOrfData.size(); x++) {
 			for (int y = 0; y < allOrfData.get(x).size(); y++) {
 				System.out.println(allOrfData.get(x).get(y));
 			}
 		}
-*/		
+		
 		
 		return allOrfData;
 	}
 	
 	
-	public static ArrayList<ArrayList<String>> orfSigAlgorithm () throws Exception {
+	public static ArrayList<ArrayList<Double>> orfSigAlgorithm () throws Exception {
 		
-		ArrayList<ArrayList<String>> finalOrfSigArray = new ArrayList<ArrayList<String>>();
+		ArrayList<ArrayList<Double>> finalOrfSigArray = new ArrayList<ArrayList<Double>>();
 		
 		ArrayList<ArrayList<ArrayList<String>>> allOrfData = new ArrayList<ArrayList<ArrayList<String>>>();
 		
 		allOrfData = JsonReader.InputJson();
 				
 		for (int i = 0; i < allOrfData.size(); i++) {
+			
+			ArrayList<Double> tempOrfPValueArray = new ArrayList<Double>();
 			
 			double probAB = 1.0;
 			double probBA = 1.0;
@@ -143,22 +145,16 @@ public class JsonReader {
 			double finalProbAB = probAB * (1 - Math.log10(probAB));
 			double finalProbBA = probBA * (1 - Math.log10(probBA));
 			
-			System.out.println("Orf #" + i + " has a combined p value of " + finalProbAB + " " + finalProbBA);
+//			System.out.println("Orf #" + i + " has a combined p value of " + finalProbAB + " " + finalProbBA);
 			
+			tempOrfPValueArray.add(finalProbAB);
+			tempOrfPValueArray.add(finalProbAB);
+			
+			finalOrfSigArray.add(tempOrfPValueArray);
+//			System.out.println(tempOrfPValueArray);
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			
 		return finalOrfSigArray;
 	}
 	

@@ -11,7 +11,8 @@ public class OrfFinder {
 //			TempSizeOrfs.Difference();
 //			SignificantOrf.allAdjustedOrfs();
 //			FastaOutput.FastaWriter();
-			JsonReader.orfSigAlgorithm();
+//			JsonReader.orfSigAlgorithm();
+			System.out.println(NestedTestAlgorithm.recursion(5));
 			
 		}
 }
