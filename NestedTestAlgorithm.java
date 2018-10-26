@@ -10,7 +10,7 @@ public class NestedTestAlgorithm {
 		if (k == 1) {
 			return x;
 		}
-		int numIntervals = 2500;
+		int numIntervals = 10;
 		
 		double result = x;
 		double dp = (1-x)/numIntervals;
@@ -24,13 +24,13 @@ public class NestedTestAlgorithm {
 		
 	}
 	
-	static double recSimp(int k, double x) {
+	static double recSimp(double k, double x) {
 
 		if (k == 1) {
 			return x;
 		}
 		
-		int numIntervals = 2500;
+		int numIntervals = 5;
 		
 		double result = x;
 		double dp = (1-x)/numIntervals;
@@ -49,5 +49,20 @@ public class NestedTestAlgorithm {
 	}
 
 	
+	static ArrayList<ArrayList<Double>> chiSquareTest() throws Exception {
+		
+		ArrayList<ArrayList<Double>> orfPValues = new ArrayList<ArrayList<Double>>();
+		ArrayList<ArrayList<Double>> finalOrfSigArray = JsonReader.pValues();
+		
+		for (int i = 0; i < finalOrfSigArray.size(); i++) {
+			if (finalOrfSigArray.get(i).get(4) < 10 && finalOrfSigArray.get(i).get(4) > 1) {
+				System.out.println("Probs for Orf" + i + recSimp(finalOrfSigArray.get(i).get(4), finalOrfSigArray.get(i).get(1)));
+			}
+			
+		}
+		
+		return orfPValues;
+		
+	}
 
 }

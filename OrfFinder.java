@@ -5,14 +5,22 @@
 public class OrfFinder {
 
 		public static void main(String[] args) throws Exception {
+			
+			
 	
-//			ReadFile.InputFile();
+//			ReadFile.Sequence();
 //			StopCodons.AllStopCodons();
 //			TempSizeOrfs.Difference();
 //			SignificantOrf.allAdjustedOrfs();
 //			FastaOutput.FastaWriter();
-//			JsonReader.orfSigAlgorithm();
-			System.out.println(NestedTestAlgorithm.recursion(5));
+//			JsonReader.InputJson();
+//			JsonReader.pValues();
+//			NestedTestAlgorithm.chiSquareTest();
 			
+//			CSVOutput.CsvOutout();		//Export files to a csv format to be read by R 
+//			OrfDisplay.finalDisplay();
+			OrfDisplay.HXB2Scaling();
+//			OrfDisplay.graphValues();
+
 		}
 }

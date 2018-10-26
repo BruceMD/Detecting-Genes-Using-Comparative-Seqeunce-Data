@@ -13,11 +13,11 @@ public class JsonReader {
 		try {
 		
 	//		for (int i = 0; i < OrfsArray.size(); i++) {				// this should give the number of ORFs we are considering
-			for (int i = 1; i < 914; i++) {
+			for (int i = 1; i < 4918; i++) {
 					
 				ArrayList<String> tempArray = new ArrayList<String>();	
 					
-				File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\FubarOutput\\4ExamplePoty\\Orf" + i + ".fas.FUBAR.json");
+				File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\FubarOutput\\HIV\\Orf" + i + ".fas.FUBAR.json");
 					
 				if (!file.isFile()) {
 					tempData.add(tempArray);
@@ -106,55 +106,74 @@ public class JsonReader {
 
 		}
 		
-		for (int x = 0; x < allOrfData.size(); x++) {
+/*		for (int x = 0; x < allOrfData.size(); x++) {
 			for (int y = 0; y < allOrfData.get(x).size(); y++) {
 				System.out.println(allOrfData.get(x).get(y));
 			}
 		}
-		
+*/		
 		
 		return allOrfData;
 	}
 	
 	
-	public static ArrayList<ArrayList<Double>> orfSigAlgorithm () throws Exception {
+	public static ArrayList<ArrayList<Double>> pValues () throws Exception {
 		
 		ArrayList<ArrayList<Double>> finalOrfSigArray = new ArrayList<ArrayList<Double>>();
 		
 		ArrayList<ArrayList<ArrayList<String>>> allOrfData = new ArrayList<ArrayList<ArrayList<String>>>();
 		
 		allOrfData = JsonReader.InputJson();
-				
-		for (int i = 0; i < allOrfData.size(); i++) {
+		
+		
+		for (int i = 0; i < allOrfData.size(); i++) {			// cycle through the ORFS
 			
+			double index = i+1;
 			ArrayList<Double> tempOrfPValueArray = new ArrayList<Double>();
 			
-			double probAB = 1.0;
-			double probBA = 1.0;
+			double probABRec = 1.0;
+			double probBARec = 1.0;
 			
-			for (int j = 0; j < allOrfData.get(i).size(); j++) {
-				
-			Double siteProbAB = new Double(allOrfData.get(i).get(j).get(1).valueOf(allOrfData.get(i).get(j).get(1)));	
-			Double siteProbBA = new Double(allOrfData.get(i).get(j).get(2).valueOf(allOrfData.get(i).get(j).get(2)));		
-				
-			probAB = probAB * siteProbAB;
-			probBA = probBA * siteProbBA;
+			double probABFish = 0;
+			double probBAFish = 0;
 			
+			for (int j = 0; j < allOrfData.get(i).size(); j++) {		// go through each AA site and do whatever with the p values
+			
+				try {
+					Double siteProbAB = new Double(String.valueOf(allOrfData.get(i).get(j).get(1)));	
+					Double siteProbBA = new Double(String.valueOf(allOrfData.get(i).get(j).get(2)));		
+						
+					probABRec *= (1 - siteProbAB);				// for the recursion formula
+					probBARec *= (1 - siteProbBA);
+					
+					probABFish += Math.log(1- siteProbAB);			// for the Fisher test
+					probBAFish += Math.log(1 - siteProbBA);
+				}
+				catch (NumberFormatException e) {
+
+				}
 			}
 			
-			double finalProbAB = probAB * (1 - Math.log10(probAB));
-			double finalProbBA = probBA * (1 - Math.log10(probBA));
+			double size = allOrfData.get(i).size();
 			
-//			System.out.println("Orf #" + i + " has a combined p value of " + finalProbAB + " " + finalProbBA);
+			tempOrfPValueArray.add(index);		
+			tempOrfPValueArray.add(probABRec);
+			tempOrfPValueArray.add(probBARec);
+			tempOrfPValueArray.add(probABFish);
+			tempOrfPValueArray.add(probBAFish);
+			tempOrfPValueArray.add(size);
 			
-			tempOrfPValueArray.add(finalProbAB);
-			tempOrfPValueArray.add(finalProbAB);
 			
 			finalOrfSigArray.add(tempOrfPValueArray);
 //			System.out.println(tempOrfPValueArray);
 			
 		}
-			
+		
+/*		for (int m = 0; m < finalOrfSigArray.size(); m++) {
+			System.out.println(finalOrfSigArray.get(m));
+		}
+		System.out.println(finalOrfSigArray.size());
+*/		
 		return finalOrfSigArray;
 	}
 	

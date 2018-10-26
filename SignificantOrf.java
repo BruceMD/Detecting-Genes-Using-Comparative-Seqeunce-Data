@@ -22,7 +22,7 @@ public class SignificantOrf {
 					
 					if (!repeatFinder.contains(x + " " + y)) {
 						
-						if((x-y)*(x-y) > 2500 ) {	// check to see if ORF will be long enough, x is smaller than y, should give a negative value
+						if((x-y)*(x-y) > 900 ) {	// check to see if ORF will be long enough, x is smaller than y, should give a negative value
 							
 							int count = 0;
 							ArrayList<String> tempOrf = new ArrayList<String>();
@@ -51,7 +51,7 @@ public class SignificantOrf {
 							
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////					
 							
-							if (count > 3) {													// if the count is sufficient (above 3) append it to arrayOfForwardOrfs
+							if (count >= 3) {													// if the count is sufficient (above 3) append it to arrayOfForwardOrfs
 								arrayOfForwardOrfs.add(tempOrf);
 							}
 							
@@ -87,7 +87,7 @@ public class SignificantOrf {
 					
 					if (!repeatFinder.contains(x + " " + y)) {
 						
-						if((x-y)*(x-y) > 2500 ) {	// check to see if ORF will be long enough, x is larger than y, should give positive value
+						if((x-y)*(x-y) > 900 ) {	// check to see if ORF will be long enough, x is larger than y, should give positive value
 							
 							int count = 0;
 							ArrayList<String> tempOrf = new ArrayList<String>();
@@ -115,7 +115,7 @@ public class SignificantOrf {
 							}	
 							
 							
-							if (count > 3) {								// if the count is sufficient (above 3) append it to arrayOfForwardOrfs
+							if (count >= 3) {								// if the count is sufficient (above 3) append it to arrayOfForwardOrfs
 								arrayOfReverseOrfs.add(tempOrf);
 							}	
 							

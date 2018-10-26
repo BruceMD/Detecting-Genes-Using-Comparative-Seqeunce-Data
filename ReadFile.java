@@ -6,24 +6,10 @@ import java.io.*;
 
 public class ReadFile {
 	
-	public static String InputFile() {
-		
-		Scanner input = new Scanner(System.in);
-		String inputFilePath = "";
-		
-		System.out.println("Enter path fo file: ");
-		inputFilePath = input.nextLine();
-		
-		input.close();
-		
-		System.out.println(inputFilePath);
-		return inputFilePath;
-		
-	}	
-	
 	public static ArrayList<String> Sequence() throws Exception {
-	
-		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example1(PotySeqs).fas");
+		
+		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\HIV.fasta");
+//		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example1(PotySeqs).fas");
 //		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example2(A-J-cons-kal153).fas");
 //		File file = new File("C:\\Users\\maxbr\\Desktop\\Bioinformatics\\Sample Seqs\\Example3(FMDV).fas");
 	
@@ -65,7 +51,6 @@ public class ReadFile {
 			writer.write(Sequences.get(i) + "\n");
 		}
 */		
-//		System.out.println(Sequences);
 //		System.out.println(Sequences.size());
 	
 		
