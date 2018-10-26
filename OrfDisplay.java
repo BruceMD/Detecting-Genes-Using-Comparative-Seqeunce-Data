@@ -59,7 +59,7 @@ public class OrfDisplay {
 			tempIndex.add(indexEndInt);
 			indexOrfs.add(tempIndex);
 			
-			System.out.println(sigOrfs.get(i)+ "," + indexStart + "," + indexEnd + "," + OrfsArray.get(sigOrfs.get(i)-1).get(1).length() +", Seq: " + OrfsArray.get(sigOrfs.get(i)-1).get(1));
+//			System.out.println(sigOrfs.get(i)+ "," + indexStart + "," + indexEnd + "," + OrfsArray.get(sigOrfs.get(i)-1).get(1).length() +", Seq: " + OrfsArray.get(sigOrfs.get(i)-1).get(1));
 		}
 		return indexOrfs;
 	}
@@ -137,7 +137,7 @@ public class OrfDisplay {
 			tempNewIndexOrfs.add(indexOrfs.get(j).get(2) - countSecond);
 			
 			newIndexOrfs.add(tempNewIndexOrfs);
-			System.out.println(newIndexOrfs.get(j));
+//			System.out.println(newIndexOrfs.get(j));
 		}
 		
 		return newIndexOrfs;
